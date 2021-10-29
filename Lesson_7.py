@@ -134,10 +134,12 @@ def factorize(n: int) -> list:
 def convert(n: int, base: int) -> list:
     number_in_another_system = []
     for divider in range(n):
-        n %= base
-        number_in_another_system.append(n)
-        number_in_another_system.reverse()
-        if n % base == 0:
-            n //= base
+        n //= base
+        while n < base:
             number_in_another_system.append(n)
+            break
+        number_in_another_system.reverse()
+        # if n % base == 0:
+        #     n //= base
+        #     number_in_another_system.append(n)
     return number_in_another_system
