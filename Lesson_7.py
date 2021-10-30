@@ -42,7 +42,7 @@ def negative_list(input_list: list) -> list:
 def mean(input_list: list) -> float:
     if len(input_list) == 0:
         return 0
-    elif len(input_list) != 0:
+    else:
         sum = 0
         for number in input_list:
             sum += number
@@ -88,7 +88,7 @@ def center(input_list: list) -> list:
 def polynom(p: list, x: int) -> int:
     if len(p) == 0:
         return 0
-    elif len(p) > 0:
+    else:
         N = 0
         multiplier = []
         for factor in p:
@@ -135,7 +135,7 @@ def convert(n: int, base: int) -> list:
     number_in_another_system = []
     for divider in range(n):
         n //= base
-        while n < base:
+        while n > base:
             number_in_another_system.append(n)
             break
         number_in_another_system.reverse()
