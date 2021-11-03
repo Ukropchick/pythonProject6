@@ -9,4 +9,45 @@
 
 
 def roman(n: int) -> str:
-    """//Your code here"""
+    def units(unit: int):
+        number_units = ""
+        if 0 <= unit <= 3:
+            number_units += "I" * unit
+        elif unit == 4:
+            number_units += "IV"
+        elif 5 <= unit <= 8:
+            number_units += "V" + "I" * (unit - 5)
+        else:
+            number_units += "IX"
+        return number_units
+
+    def dozens(dozen: int):
+        number_dozens = ""
+        if 0 <= dozen <= 3:
+            number_dozens += "X" * dozen
+        elif dozen == 4:
+            number_dozens += "XL"
+        elif 5 <= dozen <= 8:
+            number_dozens += "L" + "X" * (dozen - 5)
+        else:
+            number_dozens += "XC"
+
+    def hundreds(hundred: int):
+        number_hundred = ""
+        if 0 <= hundred <= 3:
+            number_hundred += "C" * hundred
+        elif hundred == 4:
+            number_hundred += "CD"
+        elif 5 <= hundred <= 8:
+            number_hundred += "D" + "C" * (hundred - 5)
+        else:
+            number_hundred += "CM"
+
+    def thousands(thousand: int):
+        number_thousand = ""
+        if thousand == 1:
+            number_thousand += "M"
+        else:
+            number_thousand += "M" * thousand
+
+    return units(n)

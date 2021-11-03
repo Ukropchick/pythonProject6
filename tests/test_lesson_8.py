@@ -4,6 +4,7 @@ import unittest
 
 class Test(unittest.TestCase):
     def test_roman(self):
+        self.assertEqual("VI", roman(6))
         self.assertEqual("I", roman(1))
         self.assertEqual("MMM", roman(3000))
         self.assertEqual("MCMLXXVIII", roman(1978))
