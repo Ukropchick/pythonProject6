@@ -31,6 +31,7 @@ def roman(n: int) -> str:
             number_dozens += "L" + "X" * (dozen - 5)
         else:
             number_dozens += "XC"
+        return number_dozens
 
     def hundreds(hundred: int):
         number_hundred = ""
@@ -42,6 +43,7 @@ def roman(n: int) -> str:
             number_hundred += "D" + "C" * (hundred - 5)
         else:
             number_hundred += "CM"
+        return number_hundred
 
     def thousands(thousand: int):
         number_thousand = ""
@@ -49,5 +51,11 @@ def roman(n: int) -> str:
             number_thousand += "M"
         else:
             number_thousand += "M" * thousand
+        return number_thousand
 
-    return units(n)
+    if n <= 9:
+        return units(n)
+    if 10 <= n <= 100:
+        return hundreds(n // 100) + dozens(n // 10) + units(n % 10)
+    if n >= 100:
+        return thousands(n // 1000) + hundreds(n % 1000 // 100) + dozens(n % 1000 % 100 // 10) + units(n % 10)
