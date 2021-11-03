@@ -53,9 +53,4 @@ def roman(n: int) -> str:
             number_thousand += "M" * thousand
         return number_thousand
 
-    if n <= 9:
-        return units(n)
-    if 10 <= n <= 100:
-        return hundreds(n // 100) + dozens(n // 10) + units(n % 10)
-    if n >= 100:
-        return thousands(n // 1000) + hundreds(n % 1000 // 100) + dozens(n % 1000 % 100 // 10) + units(n % 10)
+    return thousands(n // 1000) + hundreds(n % 1000 // 100) + dozens(n % 1000 % 100 // 10) + units(n % 10)
