@@ -9,48 +9,16 @@
 
 
 def roman(n: int) -> str:
-    def units(unit: int):
-        number_units = ""
-        if 0 <= unit <= 3:
-            number_units += "I" * unit
-        elif unit == 4:
-            number_units += "IV"
-        elif 5 <= unit <= 8:
-            number_units += "V" + "I" * (unit - 5)
+    def roman_digit(digit: int, alphabet: list):
+        if 0 <= digit <= 3:
+            return alphabet[0] * digit
+        elif digit == 4:
+            return alphabet[0] + alphabet[1]
+        elif 5 <= digit <= 8:
+            return alphabet[1] + alphabet[0] * (digit - 5)
         else:
-            number_units += "IX"
-        return number_units
-
-    def dozens(dozen: int):
-        number_dozens = ""
-        if 0 <= dozen <= 3:
-            number_dozens += "X" * dozen
-        elif dozen == 4:
-            number_dozens += "XL"
-        elif 5 <= dozen <= 8:
-            number_dozens += "L" + "X" * (dozen - 5)
-        else:
-            number_dozens += "XC"
-        return number_dozens
-
-    def hundreds(hundred: int):
-        number_hundred = ""
-        if 0 <= hundred <= 3:
-            number_hundred += "C" * hundred
-        elif hundred == 4:
-            number_hundred += "CD"
-        elif 5 <= hundred <= 8:
-            number_hundred += "D" + "C" * (hundred - 5)
-        else:
-            number_hundred += "CM"
-        return number_hundred
-
-    def thousands(thousand: int):
-        number_thousand = ""
-        if thousand == 1:
-            number_thousand += "M"
-        else:
-            number_thousand += "M" * thousand
-        return number_thousand
-
-    return thousands(n // 1000) + hundreds(n % 1000 // 100) + dozens(n % 1000 % 100 // 10) + units(n % 10)
+            return alphabet[0] + alphabet[2]
+    return "M" * (n // 1000) +\
+           roman_digit(n % 1000 // 100, ["C", "D", "M"]) +\
+           roman_digit(n % 100 // 10, ["X", "L", "C"]) +\
+           roman_digit(n % 10, ["I", "V", "X"])
