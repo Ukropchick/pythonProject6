@@ -42,12 +42,16 @@ def russian(n: int) -> str:
                ["тысяча", "две тысячи", "три тысячи", "четыре тысячи", "пять тысячь", "шесть тысячь", "семь тысячь", "восемь тысячь", "девять тысячь"]]
 
     def russian_unites(units: int) -> str:
+        if units == 0:
+            return ""
         for number_of_unites in range(units):
             number_of_unites += units
             if number_of_unites <= 9:
                 return numbers[0][number_of_unites - 1]
 
     def russian_dozens(dozen: int, units: int) -> str:
+        if dozen == 0:
+            return ""
         for number_of_dozens in range(dozen):
             number_of_dozens += dozen
             if 1 <= number_of_dozens <= 9:
