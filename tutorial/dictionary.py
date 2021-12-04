@@ -231,6 +231,7 @@ def contains_in(a: dict, b: dict) -> bool:
             return False
     return True
 
+
 print(contains_in({"Андрей": 3, "Семён": 5}, {"Марат": 3, "Семён": 5, "Михаил": 5}))
 """
 
@@ -242,10 +243,19 @@ print(contains_in({"Андрей": 3, "Семён": 5}, {"Марат": 3, "Се�
 
 
 def subtract_of(a: dict, b: dict):
-    for key in a:
-        value = a[key]
-        if key in b:
-            if value == b[key]:
-                return b.pop(key)
-    return b
+    dict_a = a
+    dict_b = b
+    for key in dict_a:
+        value = dict_a[key]
+        if key in dict_b:
+            if value == dict_b[key]:
+                del dict_b[key]
 
+
+def main():
+    a = {"Андрей": 3, "Семён": 5}
+    b = {"Марат": 3, "Семён": 5, "Михаил": 5}
+    subtract_of(a, b)
+    print(b)
+
+main()
