@@ -10,7 +10,12 @@ canBuildFrom(('a', 'b', 'o'), "baobab") -> true
 
 
 def can_build_from(chars: list, word: str) -> bool:
-    """TODO"""
+    chars_set = set(chars)
+    for letters in word:
+        if letters in chars_set:
+            return True
+        else:
+            return False
 
 
 """
@@ -22,13 +27,26 @@ def can_build_from(chars: list, word: str) -> bool:
  * а поле и полено -- нет.
  *
  * Например:
- *   hasAnagrams(("тор", "свет", "рот")) -> true
+ *   hasAnagrams(("рот", "свет", "код", "дверь")) -> true
 
 """
 
 
 def has_anagrams(words: list) -> bool:
-    """TODO"""
+    first_index = 0
+
+    while first_index < (len(words) - 1):
+        first_word = words[first_index]
+        second_index = first_index + 1
+        while second_index < len(words):
+            second_word = words[second_index]
+            second_index += 1
+            if len(first_word) == len(second_word):
+                if set(first_word) == set(second_word):
+                    return True
+
+        first_index += 1
+    return False
 
 
 """
@@ -50,7 +68,28 @@ def has_anagrams(words: list) -> bool:
 
 
 def find_sum_of_two(input_list: list, number: int) -> tuple:
-    """TODO"""
-    # return 0, 2 - пример return для tuple (неизменяемый массив)
+    first_index = 0
+    while first_index < (len(input_list) - 1):
+        first_number = input_list[first_index]
+        second_index = first_index + 1
+        while second_index < len(input_list):
+            second_number = input_list[second_index]
+            second_index += 1
+            if first_number + second_number == number:
+                return first_index, (second_index - 1)
 
+        first_number += 1
+    return -1, -1
 
+    # first_index = 0
+    # last_index = len(input_list) - 1
+    #
+    # while first_index < last_index:
+    #     needed_number = input_list[first_index] + input_list[last_index]
+    #     if needed_number == number:
+    #         return input_list[first_index], input_list[last_index]
+    #
+    #     first_index += 1
+    #     last_index += 1
+    #
+    # return -1, -1

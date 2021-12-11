@@ -121,4 +121,13 @@ def pop_and_clear():
 
     print(my_set)
 
+a = set("рот")
+b = set("тор")
+
+# result = a.union(b)
+print(a)
+if "р" in a:
+    print(a == b)
+
+a.intersection(b)
 # Основные операции - пересечение | и объединение & сетов
