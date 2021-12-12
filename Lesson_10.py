@@ -76,20 +76,8 @@ def find_sum_of_two(input_list: list, number: int) -> tuple:
             second_number = input_list[second_index]
             second_index += 1
             if first_number + second_number == number:
-                return first_index, (second_index - 1)
+                second_index -= 1
+                return first_index, second_index
 
-        first_number += 1
+        first_index += 1
     return -1, -1
-
-    # first_index = 0
-    # last_index = len(input_list) - 1
-    #
-    # while first_index < last_index:
-    #     needed_number = input_list[first_index] + input_list[last_index]
-    #     if needed_number == number:
-    #         return input_list[first_index], input_list[last_index]
-    #
-    #     first_index += 1
-    #     last_index += 1
-    #
-    # return -1, -1
