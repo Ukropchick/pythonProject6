@@ -11,11 +11,10 @@ canBuildFrom(('a', 'b', 'o'), "baobab") -> true
 
 def can_build_from(chars: list, word: str) -> bool:
     chars_set = set(chars)
-    for letters in word:
-        if letters in chars_set:
-            return True
-        else:
+    for letter in word:
+        if not (letter in chars_set):
             return False
+    return True
 
 
 """
@@ -41,10 +40,8 @@ def has_anagrams(words: list) -> bool:
         while second_index < len(words):
             second_word = words[second_index]
             second_index += 1
-            if len(first_word) == len(second_word):
-                if set(first_word) == set(second_word):
-                    return True
-
+            if len(first_word) == len(second_word) and set(first_word) == set(second_word):
+                return True
         first_index += 1
     return False
 
@@ -68,16 +65,23 @@ def has_anagrams(words: list) -> bool:
 
 
 def find_sum_of_two(input_list: list, number: int) -> tuple:
-    first_index = 0
-    while first_index < (len(input_list) - 1):
-        first_number = input_list[first_index]
-        second_index = first_index + 1
-        while second_index < len(input_list):
-            second_number = input_list[second_index]
-            second_index += 1
-            if first_number + second_number == number:
-                second_index -= 1
-                return first_index, second_index
+    my_dict = dict()
 
-        first_index += 1
+    for index, item in enumerate(input_list):
+        if number - item in my_dict:
+            if not my_dict[number - item] == index:
+                return my_dict[number - item], index
+        my_dict[item] = index
     return -1, -1
+
+    # first_index = 0
+    # while first_index < (len(input_list) - 1):
+    #     first_number = input_list[first_index]
+    #     second_index = first_index + 1
+    #     while second_index < len(input_list):
+    #         second_number = input_list[second_index]
+    #         if first_number + second_number == number:
+    #             return first_index, second_index
+    #         second_index += 1
+    #     first_index += 1
+    # return -1, -1
