@@ -29,4 +29,4 @@ def delete_marked(input_name: str, output_name: str):
 
 
 def count_substrings(input_name: str, substrings: list) -> dict:
-    """TODO"""
+    return 0
