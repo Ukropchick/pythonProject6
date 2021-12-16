@@ -10,7 +10,12 @@
 
 
 def delete_marked(input_name: str, output_name: str):
-    """TODO"""
+    with open(output_name, "w") as file_to_edit:
+        with open(input_name, "r") as file_to_read:
+            for line in file_to_read:
+                if line[0] != "_":
+                    file_to_edit.write(line)
+
 
 
 """

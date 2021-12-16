@@ -5,7 +5,7 @@ from Lesson_11 import *
 
 class Test(unittest.TestCase):
     def test_delete_marked(self):
-        delete_marked("/input/delete_in1.txt", "temp.txt")
+        delete_marked("C:/Users/V/PycharmProjects/pythonProject6/input/delete_in1.txt", "temp.txt")
 
     def test_count_substrings(self):
         self.assertEqual(
