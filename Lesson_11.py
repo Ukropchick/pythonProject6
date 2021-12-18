@@ -17,7 +17,6 @@ def delete_marked(input_name: str, output_name: str):
                     file_to_edit.write(line)
 
 
-
 """
 
  * Во входном файле с именем inputName содержится некоторый текст.
@@ -29,4 +28,72 @@ def delete_marked(input_name: str, output_name: str):
 
 
 def count_substrings(input_name: str, substrings: list) -> dict:
-    return 0
+    repeat = {}
+    start_count = 1
+
+    with open(input_name, "r", encoding='utf-8') as file_to_read:
+        for line in file_to_read:
+            for word in substrings:
+                if word in repeat:
+                    repeat[word] += line.lower().count(word.lower())
+                elif not (word in line):
+                    repeat[word] = 0
+        return repeat
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        #             if not is_count_changed:
+        #                 is_count_changed = True
+        #                 start_count = line.count(word.lower())  # считаем количество слов в строке
+        #                 repeat[word] = start_count  # задаем это количество в переменную в словаре
+        #             if start_count > line.count(word.lower()) or start_count < line.count(word.lower()):
+        #                 repeat[word] += line.count(word.lower())
+        # return repeat  # выводим
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    # repeat = {}
+    # origin_number = 0
+    #
+    # with open(input_name, "r", encoding='utf-8') as file_to_read:
+    #     for line in file_to_read:
+    #         number = 0
+    #         for word in substrings:
+    #             if word.lower() in line.lower():
+    #                 number += line.lower().count(word.lower())
+    #                 origin_number = line.lower().count(word.lower())
+    #                 if origin_number == number:
+    #                     repeat[word] = origin_number
+    #                 else:
+    #                     repeat[word] = origin_number + number
+    # return repeat
