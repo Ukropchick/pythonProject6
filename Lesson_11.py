@@ -12,9 +12,17 @@
 def delete_marked(input_name: str, output_name: str):
     with open(output_name, "w") as file_to_edit:
         with open(input_name, "r") as file_to_read:
+            isFirstToAdd = True
             for line in file_to_read:
+                formatted_line = line[:-2]
                 if line[0] != "_":
-                    file_to_edit.write(line)
+                    if isFirstToAdd:
+                        file_to_edit.write(formatted_line)
+                        isFirstToAdd = False
+                    else:
+                        file_to_edit.write("\n")
+                        file_to_edit.write(formatted_line)
+
 
 
 """
@@ -28,17 +36,21 @@ def delete_marked(input_name: str, output_name: str):
 
 
 def count_substrings(input_name: str, substrings: list) -> dict:
-    repeat = {}
-    start_count = 1
+    """aaa"""
 
-    with open(input_name, "r", encoding='utf-8') as file_to_read:
-        for line in file_to_read:
-            for word in substrings:
-                if word in repeat:
-                    repeat[word] += line.lower().count(word.lower())
-                elif not (word in line):
-                    repeat[word] = 0
-        return repeat
+
+    # repeat = {}
+    # for item in substrings:
+    #     repeat[item] = 0
+    #
+    # with open(input_name, "r", encoding='utf-8') as file_to_read:
+        # for line in file_to_read:
+        #     for word in substrings:
+        #         i = 0
+        #         while i < len(line):
+        #             if
+        #     # repeat[word] += line.lower().count(word.lower())
+        # return repeat
 
 
 

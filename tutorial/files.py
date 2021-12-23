@@ -59,3 +59,13 @@ def align_file(input_name: str, line_length: int, output_name: str):
 
 
 align_file("align_1.txt", 50, "output.txt")
+
+
+
+
+
+
+test = "люк, лок, сом"
+
+if "Лю" in test:
+    print(('л'))
