@@ -129,7 +129,7 @@ def date_str_to_digit(string: str) -> str:
 
 def flatten_phone_number(phone: str) -> str:
     for phone_number in re.findall(r'\+\d\s[(]\d+[)]\s\d+[-]+\d+[-]+\d+', phone):
-        ''' TODO '''
+        ''' Если честно пока нет идей как преобразовать номер из +7 (921) 123-45-67 в +79211234567 '''
 
 """
 
