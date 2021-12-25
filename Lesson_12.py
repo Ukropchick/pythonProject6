@@ -145,15 +145,12 @@ def flatten_phone_number(phone: str) -> str:
 
 
 def best_long_jump(jumps: str) -> int:
-    minimal_jump = 0
-    if not re.search(r'\d+', jumps) == None:
-        if re.search(r'[+]', jumps) != None:
-            return -1
-        else:
-            for number in re.findall(r'\d+', jumps):
-                if int(number) > minimal_jump:
-                    minimal_jump = int(number)
-            return minimal_jump
-    else:
+    max_jump = 0
+    if re.search(r'[^-%\s\d]|[-%]{2}', jumps) != None or re.search(r'\d+', jumps) == None:
         return -1
+    else:
+        for number in re.findall(r'\d+', jumps):
+            if int(number) > max_jump:
+                max_jump = int(number)
+        return max_jump
 

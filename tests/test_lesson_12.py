@@ -23,7 +23,7 @@ class Test(unittest.TestCase):
         self.assertEqual("", flatten_phone_number("134_+874"))
 
     def test_best_long_jump(self):
-        self.assertEqual(717, best_long_jump("706 % - 717 - 703"))
-        self.assertEqual(-1, best_long_jump("% - - % -"))
+        self.assertEqual(-1, best_long_jump("706 %- - 717 - 703"))
+        self.assertEqual(-1, best_long_jump("% -- % -"))
         self.assertEqual(754, best_long_jump("700 717 707 % 754"))
         self.assertEqual(-1, best_long_jump("700 + 700"))
