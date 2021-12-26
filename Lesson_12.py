@@ -54,61 +54,21 @@ def time_str_to_seconds(string: str) -> int:
 
 
 def date_str_to_digit(string: str) -> str:
-    months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
-              'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
-    days = int(string[0] + string[1])
+    months = {'января': 1, 'февраля': 2, 'марта': 3, 'апреля': 4, 'мая': 5, 'июня': 6,
+              'июля': 7, 'августа': 8, 'сентября': 9, 'октября': 10, 'ноября': 11, 'декабря': 12}
 
-    for month in re.findall(r'[а-яА-Я]+', string):
-        for index, item in enumerate(months):
-            month_number = index + 1
-            month_number_str = str(month_number)
-            if month == item:
-                if month_number == 2:
-                    if days <= 28:
-                        if month_number < 10:
-                            return re.sub(r'\s[а-яА-Я]+\s', '.' + '0' +  month_number_str + '.', string)
-                        else:
-                            return re.sub(r'\s[а-яА-Я]+\s', '.' + month_number_str + '.', string)
-                    else:
-                        return ""
-                if month_number == 4 or month_number == 6 or month_number == 9 or month_number == 11:
-                    if days <= 30:
-                        if month_number < 10:
-                            return re.sub(r'\s[а-яА-Я]+\s', '.' + '0' +  month_number_str + '.', string)
-                        else:
-                            return re.sub(r'\s[а-яА-Я]+\s', '.' + month_number_str + '.', string)
-                    else:
-                        return ""
-                elif month_number == 1 or month_number == 3 or month_number == 5 or \
-                        month_number == 7 or month_number == 8 or month_number == 10 or month_number == 12:
-                    if days <= 30:
-                        if month_number < 10:
-                            return re.sub(r'\s[а-яА-Я]+\s', '.' + '0' + month_number_str + '.', string)
-                        else:
-                            return re.sub(r'\s[а-яА-Я]+\s', '.' + month_number_str + '.', string)
-                    else:
-                        return ""
-                else:
-                    return ""
-        return ""
+    def str_add(number: str):
+        if int(number) < 10:
+            return "0" + str(number)
+        else:
+            return str(number)
 
+    if re.fullmatch(r'\d+\s[а-яА-Я]+\s\d+', string) is not None:
+        date_list = string.split(" ")
+        if date_list[1] in months:
+            return str_add(date_list[0]) + '.' + str_add(months[date_list[1]]) + '.' + date_list[2]
+    return ""
 
-
-
-
-
-
-    months = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь',
-              'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь']
-    # days = int(string[0] + string[1])
-    #
-    # for month in re.finditer(r'\w', string):
-    #     a = month[0]
-
-            #     month_number_str = str(month_number)
-            #     return re.sub(r'\s\W\s', month_number_str, string)
-            # else:
-            #     return ""
 
 
 """
@@ -128,8 +88,13 @@ def date_str_to_digit(string: str) -> str:
 
 
 def flatten_phone_number(phone: str) -> str:
-    for phone_number in re.findall(r'\+\d\s[(]\d+[)]\s\d+[-]+\d+[-]+\d+', phone):
-        ''' Если честно пока нет идей как преобразовать номер из +7 (921) 123-45-67 в +79211234567 '''
+    if re.fullmatch(r'^(\+\d+)?[-\s]*(\(([-\s]*\d+)+[-\s]*\))?([-\s]*\d+)+[-\s]*$', phone) is not None:
+        formatted_phone_number = ''
+        for digit in re.findall(r'[+\d+]', phone):
+            formatted_phone_number += digit
+        return formatted_phone_number
+    else:
+        return ""
 
 
 """
@@ -146,11 +111,10 @@ def flatten_phone_number(phone: str) -> str:
 
 def best_long_jump(jumps: str) -> int:
     max_jump = 0
-    if re.search(r'[^-%\s\d]|[-%]{2}', jumps) != None or re.search(r'\d+', jumps) == None:
+    if re.search(r'[^-%\s\d]|[-%]{2}', jumps) is not None or re.search(r'\d+', jumps) is None:
         return -1
     else:
         for number in re.findall(r'\d+', jumps):
             if int(number) > max_jump:
                 max_jump = int(number)
         return max_jump
-

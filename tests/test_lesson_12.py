@@ -7,7 +7,7 @@ class Test(unittest.TestCase):
         self.assertEqual("15.07.2016", date_str_to_digit("15 июля 2016"))
         self.assertEqual("", date_str_to_digit("3 мартобря 1918"))
         self.assertEqual("18.11.2018", date_str_to_digit("18 ноября 2018"))
-        # self.assertEqual("", date_str_to_digit("23"))
+        self.assertEqual("", date_str_to_digit("23"))
         # self.assertEqual("03.04.2011", date_str_to_digit("3 апреля 2011"))
         self.assertEqual("", date_str_to_digit("32 сентября 2011"))
         self.assertEqual("", date_str_to_digit("29 февраля 1993"))
